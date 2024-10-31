@@ -1,4 +1,5 @@
 source-sc.*
+!source-sc.pdf
 
 # General
 .DS_Store
