@@ -20,27 +20,30 @@
 \definecolor{accentcolor}{RGB}{89, 43, 31}
 
 \setCJKmainfont[
-    BoldFont = IBMPlexSansTC-Smbld
+    BoldFont = IBMPlexSansTC-SmBld
 ]{IBMPlexSansTC-Text}
 \setCJKfallbackfamilyfont{\CJKrmdefault}{PingFang SC}
 \setsansfont[
-    BoldFont = HelveticaNeue-Bold ,
-    ItalicFont = HelveticaNeue-Italic ,
-    BoldItalicFont = HelveticaNeue-BoldItalic ,
-] {HelveticaNeue}
-\setmonofont{Menlo-Regular}
+    BoldFont = SFProDisplay-Semibold ,
+    ItalicFont = SFProDisplay-RegularItalic ,
+    BoldItalicFont = SFProDisplay-BoldItalic ,
+] {SFProDisplay-Regular}
+\setmonofont{SFMono-Regular}
 
 % Tikz Settings for drawing commit graphs
 \usetikzlibrary{shapes.geometric, arrows}
-\tikzstyle{commit} = [rectangle, rounded corners, minimum width=0.6in, minimum height=0.2in, text centered, draw=black, font=\footnotesize\ttfamily]
+\tikzstyle{commit} = [rectangle, rounded corners, minimum
+    width=0.6in, minimum height=0.2in, text centered, draw=black,
+font=\footnotesize\ttfamily]
 \tikzstyle{activecommit} = [commit, top color=green!15, bottom color=green!30]
-\tikzstyle{greyedcommit} = [commit, top color=lightgray!30, bottom color=lightgray!60]
+\tikzstyle{greyedcommit} = [commit, top color=lightgray!30, bottom
+color=lightgray!60]
 \tikzstyle{arrow} = [thick,->,>=latex]
 
 \title{Git 版控系統}
 \subtitle{Git Version Control System}
 \date{\today}
-\author{Ostrichbeta Chan}
+\author{Ostrichbeta Chan 陳逸銘}
 \institute{WHUAI Team}
 
 \begin{document}
@@ -321,7 +324,7 @@ git commit -m "Update readme and fix login issue"\end{lstlisting}
     \begin{block}{git commit}
         將暫存區中的檔案提交本地倉庫存檔。
         \begin{center}
-            \includegraphics[width=5in]{./img/git-commit.png}
+            \includegraphics[width=4.5in]{./img/git-commit.png}
         \end{center}
         \begin{itemize}
             \item 未加入暫存區的檔案\textbf{將不會被提交}
@@ -362,7 +365,7 @@ a.txt # 忽略所有名為 a.txt 的檔案
 !homo.so # 強制保留名為 homo.so 的檔案
 /ros2/**/lah/ # ros2開頭 launch結尾的目錄/ros2/lah/和/ros2/s/s/lah/都符合\end{lstlisting}
 
-        設定好之後將 .gitignore 使用 \texttt{git add} 新增，其規則就會對未來檔案生效。
+        設定好之後將\ .gitignore 使用\ \texttt{git add} 新增，其規則就會對未來檔案生效。
 
         GitHub 官方也整理了一些環境和語言下常用的 .gitignore 檔案集：
 
@@ -399,7 +402,7 @@ git commit -am "Remove ignored files"\end{lstlisting}
         \begin{columns}
             \begin{column}{0.6\textwidth}
                 \begin{center}
-                    \includegraphics[width=3.5in]{./img/git-log.png}
+                    \includegraphics[width=3.2in]{./img/git-log.png}
                 \end{center}
             \end{column}
             \begin{column}{0.4\textwidth}
@@ -485,7 +488,7 @@ git reset --hard 0967be3\end{lstlisting}
         \item Mixed 是預設的工作模式，不改變工作目錄，但將檔案退回到未追蹤的狀態；
     \end{itemize}
     \begin{center}
-        \includegraphics[width=3.3in]{./img/git-reset-mixed.png}
+        \includegraphics[width=3.0in]{./img/git-reset-mixed.png}
     \end{center}
 \end{frame}
 
@@ -530,8 +533,10 @@ git reset --hard 0967be3\end{lstlisting}
             \node[activecommit] (ae50452) {ae50452};
             \node[activecommit, right of=ae50452, xshift=0.45in] (7779ae2) {7779ae2};
             \node[activecommit, right of=7779ae2, xshift=0.45in] (98370ba) {98370ba};
-            \node[draw=none, above of=98370ba, font=\scriptsize, yshift=-0.1in] (head) {HEAD};
-            \node[draw=none, below of=98370ba, font=\scriptsize, yshift=+0.1in] (main) {\texttt{main}};
+            \node[draw=none, above of=98370ba, font=\scriptsize,
+            yshift=-0.1in] (head) {HEAD};
+            \node[draw=none, below of=98370ba, font=\scriptsize,
+            yshift=+0.1in] (main) {\texttt{main}};
             % Arrows
             \draw[arrow] (7779ae2) -- (ae50452);
             \draw[arrow] (98370ba) -- (7779ae2);
@@ -548,8 +553,10 @@ git reset --hard 0967be3\end{lstlisting}
             \node[activecommit, right of=ae50452, xshift=0.45in] (7779ae2) {7779ae2};
             \node[activecommit, right of=7779ae2, xshift=0.45in] (98370ba) {98370ba};
             \node[activecommit, right of=98370ba, xshift=0.45in] (6acbb57) {6acbb57};
-            \node[draw=none, above of=6acbb57, font=\scriptsize, yshift=-0.1in] (head) {HEAD};
-            \node[draw=none, below of=6acbb57, font=\scriptsize, yshift=+0.1in] (main) {\texttt{main}};
+            \node[draw=none, above of=6acbb57, font=\scriptsize,
+            yshift=-0.1in] (head) {HEAD};
+            \node[draw=none, below of=6acbb57, font=\scriptsize,
+            yshift=+0.1in] (main) {\texttt{main}};
             % Arrows
             \draw[arrow] (7779ae2) -- (ae50452);
             \draw[arrow] (98370ba) -- (7779ae2);
@@ -569,8 +576,10 @@ git reset --hard 0967be3\end{lstlisting}
             \node[activecommit, right of=ae50452, xshift=0.45in] (7779ae2) {7779ae2};
             \node[activecommit, right of=7779ae2, xshift=0.45in] (98370ba) {98370ba};
             \node[activecommit, right of=98370ba, xshift=0.45in] (6acbb57) {6acbb57};
-            \node[draw=none, above of=6acbb57, font=\scriptsize, yshift=-0.1in] (head) {HEAD};
-            \node[draw=none, below of=6acbb57, font=\scriptsize, yshift=+0.1in] (main) {\texttt{main}};
+            \node[draw=none, above of=6acbb57, font=\scriptsize,
+            yshift=-0.1in] (head) {HEAD};
+            \node[draw=none, below of=6acbb57, font=\scriptsize,
+            yshift=+0.1in] (main) {\texttt{main}};
             % Arrows
             \draw[arrow] (7779ae2) -- (ae50452);
             \draw[arrow] (98370ba) -- (7779ae2);
@@ -588,8 +597,10 @@ git reset --hard 0967be3\end{lstlisting}
             \node[activecommit, right of=ae50452, xshift=0.45in] (7779ae2) {7779ae2};
             \node[activecommit, right of=7779ae2, xshift=0.45in] (98370ba) {98370ba};
             \node[greyedcommit, right of=98370ba, xshift=0.45in] (6acbb57) {6acbb57};
-            \node[draw=none, above of=98370ba, font=\scriptsize, yshift=-0.1in] (head) {HEAD};
-            \node[draw=none, below of=98370ba, font=\scriptsize, yshift=+0.1in] (main) {\texttt{main}};
+            \node[draw=none, above of=98370ba, font=\scriptsize,
+            yshift=-0.1in] (head) {HEAD};
+            \node[draw=none, below of=98370ba, font=\scriptsize,
+            yshift=+0.1in] (main) {\texttt{main}};
             % Arrows
             \draw[arrow] (7779ae2) -- (ae50452);
             \draw[arrow] (98370ba) -- (7779ae2);
@@ -766,9 +777,12 @@ git commit -m "Included API entrypoint"\end{lstlisting}
             \node[activecommit] (cbf) {cbfc8d4};
             \node[activecommit, right of=cbf, xshift=0.45in] (8e7) {8e752fe};
             \node[activecommit, right of=8e7, xshift=0.45in] (7e4) {7e47655};
-            \node[activecommit, right of=8e7, xshift=0.45in, yshift=-0.25in] (70c) {70c292e};
-            \node[draw=none, above of=7e4, yshift=-0.1in, font=\scriptsize] (main) {\texttt{main}, HEAD};
-            \node[draw=none, below of=70c, yshift=+0.1in, font=\scriptsize] (newui) {\texttt{newui}};
+            \node[activecommit, right of=8e7, xshift=0.45in,
+            yshift=-0.25in] (70c) {70c292e};
+            \node[draw=none, above of=7e4, yshift=-0.1in, font=\scriptsize]
+            (main) {\texttt{main}, HEAD};
+            \node[draw=none, below of=70c, yshift=+0.1in, font=\scriptsize]
+            (newui) {\texttt{newui}};
             % Arrows
             \draw[arrow] (8e7) -- (cbf);
             \draw[arrow] (7e4) -- (8e7);
@@ -790,10 +804,13 @@ git commit -m "Included API entrypoint"\end{lstlisting}
             \node[activecommit] (cbf) {cbfc8d4};
             \node[activecommit, right of=cbf, xshift=0.45in] (8e7) {8e752fe};
             \node[activecommit, right of=8e7, xshift=0.45in] (7e4) {7e47655};
-            \node[activecommit, right of=8e7, xshift=0.45in, yshift=-0.25in] (70c) {70c292e};
+            \node[activecommit, right of=8e7, xshift=0.45in,
+            yshift=-0.25in] (70c) {70c292e};
             \node[activecommit, right of=7e4, xshift=0.45in] (2bb) {2bb56b0};
-            \node[draw=none, above of=2bb, yshift=-0.1in, font=\scriptsize] (main) {\texttt{main}, HEAD};
-            \node[draw=none, below of=70c, yshift=+0.1in, font=\scriptsize] (newui) {\texttt{newui}};
+            \node[draw=none, above of=2bb, yshift=-0.1in, font=\scriptsize]
+            (main) {\texttt{main}, HEAD};
+            \node[draw=none, below of=70c, yshift=+0.1in, font=\scriptsize]
+            (newui) {\texttt{newui}};
             % Arrows
             \draw[arrow] (8e7) -- (cbf);
             \draw[arrow] (7e4) -- (8e7);
@@ -952,7 +969,12 @@ git stash list # 列出當前的stash列表
 git stash apply stash@{<id>} # 套用ID為 <id> 的 stash到當前分支上
 git stash drop stash@{<id>} # 刪去一個 stash
 git stash pop stash@{<id>} # 等同 apply + drop\end{lstlisting}
+
+        使用 \texttt{git stash} 可以暫存所有「已被 git 追蹤已經放入或未有放入暫存區（staging area）」的變動，但不會暫存新增未被 git 管控或被忽略的檔案。
     \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{其他指令}
     \begin{block}{git cherry-pick}
         抽出一個 commit 並整合到當前的 \texttt{HEAD}
         \begin{lstlisting}[
@@ -960,7 +982,16 @@ git stash pop stash@{<id>} # 等同 apply + drop\end{lstlisting}
           numbers = none,
           linewidth = \textwidth
         ]
-git cherry-pick <commit>\end{lstlisting}
+git cherry-pick <commit> # 揀一個分支整合
+git cherry-pick <commit1>...<commit2>
+# 揀 commit1 至 commit2 之間的整合（不含 commit1）
+git cherry-pick <commit1>^..<commit2>
+# 揀 commit1 至 commit2 之間的整合（含 commit1）\end{lstlisting}
+        \pause
+        整合之後，新的 commit 改變的內容會與舊 commit 一致，但會有一個新的 commit 號。
+        \begin{center}
+            \includegraphics[width=4in]{./img/git-log-cherrypick.png}
+        \end{center}
     \end{block}
 \end{frame}
 
@@ -975,7 +1006,7 @@ git cherry-pick <commit>\end{lstlisting}
 git blame <path>\end{lstlisting}
 
         \begin{center}
-            \includegraphics[width=4in]{./img/git-blame.png}
+            \includegraphics[width=3.6in]{./img/git-blame.png}
         \end{center}
     \end{block}
 \end{frame}
@@ -1008,7 +1039,9 @@ git revert <commit>\end{lstlisting}
 git checkout <branch> <file> \dots # 由\texttt{branch}分支復原
 git checkout [--] <file> 放棄暫存區的更改，回到暫存前狀態\end{lstlisting}
         \begin{block}{為什麼要加\texttt{--}？}
-            \justify\hspace{18pt}\texttt{git checkout} 會優先匹配分支的名字。假若你有分支叫 \texttt{c.cpp}，但是同時又想復原 c.cpp 檔案，使用 \texttt{git checkout c.cpp} 會切到 \texttt{c.cpp} 分支，唯有加上 \texttt{--} 才可以跳過分支名字的匹配直接復原檔案。
+            \justify\hspace{18pt}\texttt{git checkout} 會優先匹配分支的名字。假若你有分支叫
+            \texttt{c.cpp}，但是同時又想復原 c.cpp 檔案，使用 \texttt{git checkout c.cpp}
+            會切到 \texttt{c.cpp} 分支，唯有加上 \texttt{--} 才可以跳過分支名字的匹配直接復原檔案。
         \end{block}
     \end{block}
 \end{frame}
@@ -1519,6 +1552,18 @@ git clone [-b <branch>] [--single-branch] [--depth n] <url> [path]\end{lstlistin
     \end{center}
 \end{frame}
 
+\section{練習}
+\begin{frame}{小練習}
+    本倉庫有一個 zip 包的練習倉庫供練習 Git 指令。內含有 A, B, C 三個資料夾。
+    \begin{enumerate}
+        \item A 資料夾是一個未被 Git 管控的資料夾，初始化並完成一個 commit。
+        \item B 資料夾的最新一個 commit 中，token.txt 被加入了奇怪的內容。使用 git log 查詢，並使用 git reset 或其他指令對其進行退回更新。
+        \item C 資料夾中，合併 hk 分支到 main 分支，解決可能出現的合併衝突。
+    \end{enumerate}
+
+    若有不明之處，可以通過各種方式詢問搜尋引擎或者 AI 解決問題。
+\end{frame}
+
 \section{附錄}
 
 \begin{frame}{Git 輔助資料}
@@ -1553,4 +1598,3 @@ git clone [-b <branch>] [--single-branch] [--depth n] <url> [path]\end{lstlistin
 \end{frame}
 
 \end{document}
-
