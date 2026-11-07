@@ -2,7 +2,7 @@
 
 This repository hosts a beginner Git workshop for WHUAI students who have learned programming and are new to version control.
 
-The workshop uses one small grade-calculator project and five guided exercises. Allow approximately **120 minutes**, with installation and authentication completed before class.
+The workshop uses one small grade-calculator project and five guided exercises. Allow approximately **120 minutes**, with Git installed and a GitHub account prepared before class. Chapter 4 guides students through PAT setup before their first push.
 
 The slides, student handout, and student exercises are in Traditional Chinese.
 

@@ -10,6 +10,7 @@
 \usepackage{indentfirst}
 \usepackage{needspace}
 \usepackage{amsmath}
+\usepackage{graphicx}
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage{tabularx}
@@ -48,6 +49,25 @@
     \par\noindent\hyperref[#1]{\textcolor{handoutaccent}{查看參考答案（第 \pageref*{#1} 頁）}}\par}
 \newcommand{\BackLink}[1]{%
     \par\noindent\hyperref[#1]{\textcolor{handoutaccent}{返回題目（第 \pageref*{#1} 頁）}}\par}
+\newcommand{\PATImage}[1]{%
+    \begin{center}
+        % 60% of the previous display dimensions; preserve the original files.
+        \includegraphics[width=0.552\linewidth,height=0.276\textheight,keepaspectratio]{img/#1}
+    \end{center}}
+\newenvironment{PATStep}{%
+    \par\addvspace{0.7\baselineskip}\noindent
+    \begin{minipage}{\linewidth}\setlength{\parindent}{2em}%
+}{\end{minipage}\par}
+\newcommand{\PATRow}[3]{%
+    \par\noindent\begin{minipage}[t]{0.52\linewidth}
+        \vspace{0pt}\setlength{\parindent}{2em}
+        \subsubsection{#1}
+        #2\par
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.43\linewidth}
+        \vspace{0pt}\centering
+        \includegraphics[width=\linewidth,height=0.25\textheight,keepaspectratio]{img/#3}
+    \end{minipage}\par\addvspace{0.6\baselineskip}}
 \titleformat{\section}{\Large\bfseries}{\thesection.}{0.6em}{}
 \titleformat{\subsection}{\large\bfseries}{}{0pt}{}
 \titleformat{\subsubsection}{\normalsize\bfseries}{}{0pt}{}
@@ -84,8 +104,7 @@ git --version
 git config --global user.name "Alex Chen"
 git config --global user.email "alex@example.com"
 \end{Code}
-    \item 準備 GitHub 帳號，依 \href{https://docs.github.com/en/get-started/git-basics/caching-your-github-credentials-in-git}{GitHub 官方認證指南}\footnote{\url{https://docs.github.com/en/get-started/git-basics/caching-your-github-credentials-in-git}} 使用 Git Credential Manager 或 GitHub CLI。CLI 需先安裝，再執行 \code{gh auth login}，選 HTTPS 並同意設定 Git 認證。已有可用的 SSH 設定也可以使用，但本講義使用 HTTPS 網址。
-    \item 課前請用自己的測試倉庫確認 \code{push} 成功。不要把 Token 放進 remote 網址、檔案或截圖。
+    \item 準備可登入的 GitHub 帳號，確認網路能存取 GitHub。\hyperref[guide:pat]{第 4 章的 PAT 教學}會帶著完成第一次推送的認證設定；已有可透過 HTTPS 正常 \code{push} 的認證可繼續使用。
     \item Python 是選用的檢查工具，不是完成 Git 練習的必要條件。依環境使用 \code{python}、\code{python3} 或 \code{py}。
 \end{itemize}
 
@@ -367,6 +386,70 @@ PR 是 GitHub 上的審閱與合併請求，不是 Git 命令。推送來源 bra
 
 遠端與本機各有新 commit 時，推送可能因非快轉被拒絕。這通常只是歷史分歧：先 \code{fetch}，再在乾淨工作目錄合併 \code{origin/main}。若兩邊沒有改到同一段內容，整合通常可自動完成；若 Git 無法判斷保留哪一版，會停下來標示衝突，需照練習 4 人工解決。
 
+\subsection{設定 GitHub 推送認證：PAT}
+\label{guide:pat}
+
+PAT（Personal access token）是在 GitHub 透過 HTTPS 推送時，代替密碼使用的憑證；它不會改動 \code{user.name}、\code{user.email} 或 commit 的作者資訊。若已能透過 HTTPS 正常 \code{push}，可以略過這段設定。
+
+以下使用自己的 GitHub 帳號建立 fine-grained PAT。畫面中的帳號、頭像與日期都是示例，請依自己的帳號和課程日期操作。
+
+\subsubsection{1--2. 開啟帳號設定}
+
+\noindent\begin{minipage}[t]{0.47\linewidth}
+    \vspace{0pt}
+    \noindent\textbf{1. Settings}
+
+    登入 GitHub 後，點右上角頭像，再點 \mbox{Settings}。
+
+    \PATImage{github-pat-01-account-settings.png}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.47\linewidth}
+    \vspace{0pt}
+    \noindent\textbf{2. Developer settings}
+
+    在 Settings 左側選單捲到最下方，點 \mbox{Developer settings}。
+
+    \PATImage{github-pat-02-developer-settings.png}
+\end{minipage}\par
+
+\begin{PATStep}
+\subsubsection{3. 建立 fine-grained token}
+
+展開 Personal access tokens，選 Fine-grained tokens，再按 Generate new token。
+
+\PATImage{github-pat-03-generate-token.png}
+\end{PATStep}
+
+\begin{PATStep}
+\subsubsection{4. 填寫名稱、擁有者與到期日}
+
+Token name 可填 \code{Git workshop}；Description 選填。Resource owner 選自己的帳號；Expiration 選 7 或 30 天，確保涵蓋練習期間。圖中的到期日期僅為示例。
+
+\PATImage{github-pat-04-token-details.png}
+\end{PATStep}
+
+\clearpage
+\begin{PATStep}
+\PATRow{5. 選擇可存取的倉庫}{%
+    本課為了示範方便，與圖中一樣選 All repositories，授權會涵蓋自己目前與未來的倉庫。
+
+    \textbf{實際專案或正式環境請選 Only select repositories，只勾選需要的倉庫。}Public repositories 這個選項只有唯讀權限，無法用來 \code{push}。
+}{github-pat-05-repository-access.png}
+
+\PATRow{6. 加入 Contents 權限}{%
+    在 Permissions 的 Repositories 分類按 Add permissions，搜尋 Contents 並勾選；下一步再設定讀寫權限。
+}{github-pat-06-add-contents-permission.png}
+
+\PATRow{7. 設定讀寫權限並產生 PAT}{%
+    將 Contents 設為 Read and write；Metadata 保留預設的 Read-only 即可，最後按 Generate token。
+
+    產生後立即複製並妥善保存 PAT，完整內容只會顯示一次。不要把它寫進 README、remote URL 或命令中，也不要分享含有 PAT 的截圖。
+}{github-pat-07-read-write-permission.png}
+\end{PATStep}
+
+設定步驟可對照 \href{https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens}{GitHub 官方 PAT 說明}。
+\clearpage
+
 \subsection{練習 5：推送、審閱並更新同一個 PR（S24–S29）}
 
 \subsubsection{推送本機倉庫}
@@ -377,12 +460,35 @@ PR 是 GitHub 上的審閱與合併請求，不是 Git 命令。推送來源 bra
 把 \code{YOUR-USER} 換成自己的 GitHub 帳號；若倉庫另有名稱，也修改網址中的 \code{git-grade-lab}。\par
 }
 
+若要照本課直接輸入 PAT 的方式操作，先在目前的練習倉庫執行以下設定；已有可用認證者可略過這行。
+
+\begin{Code}
+git config --local credential.helper ""
+\end{Code}
+
+這行只對本練習倉庫停用 \href{https://git-scm.com/docs/gitcredentials#_configuration_options}{credential helper}，不改全域設定，也不儲存 PAT。之後 \code{push} 需要認證時，須再次輸入帳號與 PAT。
+
+接著設定 HTTPS remote，推送本機的 \code{main}：
+
 \begin{Code}
 git remote add origin https://github.com/YOUR-USER/git-grade-lab.git
 git push -u origin main
 \end{Code}
 
+若出現下列提示，Username 填 GitHub 帳號，Password 貼上 PAT。這裡的帳號不是 \code{user.name}，Password 也不是 GitHub 網站的登入密碼。
+
+\begin{Code}
+Username for 'https://github.com': YOUR-USER
+Password for 'https://YOUR-USER@github.com':
+\end{Code}
+
+終端機貼上 PAT 時通常不顯示字元或星號，貼好後按 Enter 即可。後續仍使用原本的 \code{git push}；需要認證時，輸入同一個尚未過期的 PAT。
+
 到 GitHub 確認可以看到 README、\code{grades.py} 與 commit 紀錄，且不應包含 \code{.env}。
+
+\subsubsection{認證失敗時先檢查}
+
+核對 PAT 是否過期、Resource owner 是否為自己的帳號、Repository access 是否包含目標倉庫，以及 Contents 是否設為 Read and write。PAT 過期時，回到上述設定頁重新建立。
 
 \subsubsection{建立文件 branch 與 PR}
 
@@ -406,6 +512,7 @@ Expected output: Average: 80.0
 
 若使用 \code{python3} 或 \code{py}，請相應修改說明。
 
+\Needspace{8\baselineskip}
 \begin{Code}
 git diff
 git add README.md
@@ -448,6 +555,7 @@ git status
 
 這個小節是選用補充，可在完成五個練習後閱讀；以下在新目錄取得既有倉庫，不再執行 \code{init}：
 
+\Needspace{7\baselineskip}
 \begin{Code}
 git clone https://github.com/YOUR-USER/git-grade-lab.git git-grade-copy
 cd git-grade-copy

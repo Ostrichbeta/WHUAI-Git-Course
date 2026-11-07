@@ -17,8 +17,7 @@ git config --global user.name "Alex Chen"
 git config --global user.email "alex@example.com"
 ~~~
 
-- 準備 GitHub 帳號，依 [GitHub 官方認證指南](https://docs.github.com/en/get-started/git-basics/caching-your-github-credentials-in-git) 使用 Git Credential Manager 或 GitHub CLI。CLI 需先安裝，再執行 `gh auth login`，選 HTTPS 並同意設定 Git 認證。已有可用的 SSH 設定也可以使用，但本講義使用 HTTPS 網址。
-- 課前請用自己的測試倉庫確認 `push` 成功。不要把 Token 放進 remote 網址、檔案或截圖。
+- 準備可登入的 GitHub 帳號，確認網路能存取 GitHub。[學生講義](../handout.pdf)第 4 章會帶著完成 PAT 設定與第一次推送；已有可透過 HTTPS 正常 `push` 的認證可繼續使用。
 - Python 是選用的檢查工具，不是完成 Git 練習的必要條件。依環境使用 `python`、`python3` 或 `py`。
 
 ## 準備獨立的練習目錄（S05）
