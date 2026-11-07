@@ -75,6 +75,8 @@ rubber.cache
 ## Build tool directories for auxiliary files
 # latexrun
 latex.out/
+_markdown_*/
+handout.luabridge.lua
 
 ## Auxiliary and intermediate files from other packages:
 # algorithms
