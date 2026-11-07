@@ -405,6 +405,7 @@ PAT（Personal access token）是在 GitHub 透過 HTTPS 推送時，代替密�
 
 以下使用自己的 GitHub 帳號建立 fine-grained PAT。畫面中的帳號、頭像與日期都是示例，請依自己的帳號和課程日期操作。
 
+\begin{PATStep}
 \subsubsection{1--2. 開啟帳號設定}
 
 \noindent\begin{minipage}[t]{0.47\linewidth}
@@ -424,20 +425,13 @@ PAT（Personal access token）是在 GitHub 透過 HTTPS 推送時，代替密�
     \PATImage{github-pat-02-developer-settings.png}
 \end{minipage}\par
 
-\begin{PATStep}
-\subsubsection{3. 建立 fine-grained token}
+\PATRow{3. 建立 fine-grained token}{%
+    展開 Personal access tokens，選 Fine-grained tokens，再按 Generate new token。
+}{github-pat-03-generate-token.png}
 
-展開 Personal access tokens，選 Fine-grained tokens，再按 Generate new token。
-
-\PATImage{github-pat-03-generate-token.png}
-\end{PATStep}
-
-\begin{PATStep}
-\subsubsection{4. 填寫名稱、擁有者與到期日}
-
-Token name 可填 \code{Git workshop}；Description 選填。Resource owner 選自己的帳號；Expiration 選 7 或 30 天，確保涵蓋練習期間。圖中的到期日期僅為示例。
-
-\PATImage{github-pat-04-token-details.png}
+\PATRow{4. 填寫名稱、擁有者與到期日}{%
+    Token name 可填 \code{Git workshop}；Description 選填。Resource owner 選自己的帳號；Expiration 選 7 或 30 天，確保涵蓋練習期間。圖中的到期日期僅為示例。
+}{github-pat-04-token-details.png}
 \end{PATStep}
 
 \clearpage
