@@ -20,7 +20,7 @@ The handout includes numbered chapters, concept explanations, all five exercises
 
 The sequence is: save and inspect versions → understand staging → undo a mistake → develop on a branch → resolve a conflict → push and review a pull request. Advanced history manipulation is reserved for follow-up study.
 
-Stable IDs `S01`–`S31` and `A01`–`A03` identify the lesson slides. `S08a` combines excerpts of the Untracked and Not staged output (formerly `S08b`); `S08c` shows staged output. The handout uses these IDs to point to the relevant slides. Beamer also adds chapter navigation pages, and pauses create incremental PDF pages.
+Stable IDs `S01`–`S31` and `A01`–`A03` identify the lesson slides. `S08a` combines excerpts of the Untracked and Not staged output (formerly `S08b`); `S08c` shows staged output. `S12a` introduces `git add .` after `.gitignore`. The handout uses these IDs to point to the relevant slides. Beamer also adds chapter navigation pages, and pauses create incremental PDF pages.
 
 ## How to build
 

@@ -344,6 +344,21 @@ build/
     {\small 規則對尚未追蹤的檔案生效；已追蹤的檔案不會自動取消追蹤。}
 \end{frame}
 
+% S12a
+\begin{frame}[fragile]{一起暫存目前目錄的變更}
+    \texttt{.} 表示目前目錄；這個操作也包含子目錄。
+\begin{lstlisting}[language=bash]
+git status
+git add .
+git diff --staged
+\end{lstlisting}
+    \begin{itemize}
+        \item 新增、修改與刪除都會暫存；符合忽略規則的未追蹤檔案會略過。
+        \item commit 前先讀 \texttt{git diff --staged}，確認要保存的變更。
+        \item 只想選部分檔案時，仍可用 \texttt{git add 檔名}。
+    \end{itemize}
+\end{frame}
+
 % S13
 \begin{frame}[fragile]{用歷史回答：改了什麼？為什麼？}
 \begin{lstlisting}[language=bash]

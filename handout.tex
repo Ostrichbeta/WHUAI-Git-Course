@@ -227,6 +227,18 @@ git status
 
 這些規則對未追蹤檔案生效；已追蹤的檔案不會自動停止追蹤。忽略也不會清除歷史中的內容。
 
+\subsubsection{一起暫存目前目錄的變更（S12a）}
+
+當目前目錄與子目錄中的變更都要納入同一個 commit 時，可用 \code{git add .} 一起暫存，包括新增、修改與刪除。\code{.} 表示目前目錄；從專案根目錄執行時，會處理整個專案。
+
+\begin{Code}
+git status
+git add .
+git diff --staged
+\end{Code}
+
+忽略規則只會略過符合規則的未追蹤檔案；已追蹤的檔案仍會暫存。commit 前先讀 \code{git diff --staged}，確認暫存內容都應包含在本次 commit 中。只想選某幾個檔案時，仍可用 \code{git add 檔名}。
+
 \subsection{查歷史與選復原方式}
 
 \code{git log --oneline} 看 commit 順序，\code{git show HEAD} 看目前 commit 的內容。復原前先判斷變更在哪裡：尚未暫存、已暫存但未 commit，或已經 commit。三種情況用不同命令，不能互相取代。
