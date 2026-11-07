@@ -13,7 +13,7 @@ The slides, student handout, and student exercises are in Traditional Chinese.
 | Slides | [View slides](source.pdf) | [source.tex](source.tex) |
 | Student handout | [View handout](handout.pdf) | [handout.tex](handout.tex) |
 
-The handout includes numbered chapters, concept explanations, all five exercises, troubleshooting, and a final answer section with links to and from the questions. Body paragraphs indent by two Chinese characters. The earlier [Markdown edition](handout.md) is retained for reference; the PDF is built directly from `handout.tex`.
+The handout includes numbered chapters, concept explanations, all five exercises, troubleshooting, and a final answer section with links to and from the questions. Body paragraphs indent by two Chinese characters. The PDF is built directly from `handout.tex`.
 
 - [Student exercises](exercises/README.md): preparation, five exercises, success criteria, and reference answers.
 - [Starter project](exercises/grade-lab): copy this outside the tutorial repository before initializing Git.

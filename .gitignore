@@ -77,6 +77,7 @@ rubber.cache
 latex.out/
 _markdown_*/
 handout.luabridge.lua
+/handout.md
 
 ## Auxiliary and intermediate files from other packages:
 # algorithms
